@@ -23,7 +23,7 @@ btn.addEventListener("click", event => {
         let baseName = []
 
         let basePeople = request.response.slice(0, 50);
-        for ( let i = 0; i<50;i++) {
+        for ( let i = 0; i<50; i++) {
             baseName.push(basePeople[i]['name'])
         }
 
@@ -33,13 +33,11 @@ btn.addEventListener("click", event => {
 
         baseName.sort();
 
-        let baseNameId = [];
+        let baseNameId = baseName.reduce(function(prev,item,index) {
+            prev.push({'id' : index, 'name': item})
+            return prev
+        },[])
 
-        for (let i = 0; i < baseName.length; i++) {
-            baseNameId.push({'id':i,'name':baseName[i]})
-        }
-
-        console.log(baseNameId)
         modalOn.classList.add('meinModalOn');
 
         document.getElementById('ul').innerHTML = '';
