@@ -1,12 +1,14 @@
-const $ = {};
 let btn = document.getElementById('btnOpenModal');
 let request = new XMLHttpRequest();
+let modalOn = document.getElementById('modal');
+let btnClose = document.getElementById('btnClose');
+let list = document.getElementById('ul');
 
-
-
+btnClose.addEventListener('click', event => {
+    modalOn.classList.remove('meinModalOn');
+})
 
 btn.addEventListener("click", event => {
-    myModal.open();
     request.open(
         'GET',
         'https://60d2c48c858b410017b2e2d9.mockapi.io/users',
@@ -18,7 +20,7 @@ btn.addEventListener("click", event => {
     request.send();
 
     request.onload = function() {
-        baseName = []
+        let baseName = []
 
         let basePeople = request.response.slice(0, 50);
         for ( let i = 0; i<50;i++) {
@@ -31,19 +33,26 @@ btn.addEventListener("click", event => {
 
         baseName.sort();
 
-        baseNameId = [];
+        let baseNameId = [];
 
         for (let i = 0; i < baseName.length; i++) {
             baseNameId.push({'id':i,'name':baseName[i]})
         }
 
         console.log(baseNameId)
+        modalOn.classList.add('meinModalOn');
 
-        for (let i = 0; i < baseNameId.length; i++) {
-            setTimeout(function () {
+        document.getElementById('ul').innerHTML = '';
+        let i = 0;
+        let id = setInterval(function() {
+            if (i == baseName.length-1 ) {
+                clearInterval(id);
+            } else{
                 document.getElementById('ul').innerHTML += "<li>"+baseNameId[i].name+"</li>"
-            }, i*2000)
+                i++;
+            };
+
+        }, 100);
         }
     }
-
-})
+)

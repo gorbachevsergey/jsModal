@@ -14,12 +14,24 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam illo incidunt, iure pariatur quis quo quos soluta vel. Dolorum, exercitationem?</p>
         <div class="button btn" id="btnOpenModal"><p>Нажми Меня</p></div>
     </div>
-
-
-
+    <div class="meinModal" id="modal">
+        <div class="modalOverlay" data-close="true">
+            <div class="modalWindow">
+                <div class="head">
+                    <span class="headTitle">Модальное окно</span>
+                    <span class="headClose" data-close="true">&times;</span>
+                </div>
+                <div class="body" id="loadId">
+                    <ul id="ul"></ul>
+                </div>
+                <div class="footer">
+                    <div class="button" >ОК</div>
+                    <div class="button " id="btnClose">Закрыть</div>
+                </div>
+            </div>
+        </div>
+    </div>
 <script src="script.js"></script>
-<script src="modal/modal.js"></script>
-<script src="index.js"></script>
 </body>
 </html>
 
